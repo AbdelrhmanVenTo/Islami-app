@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">IslamiApp</string>
+    <string name="title_quran">َQuran</string>
+    <string name="title_quotes">Quotes</string>
+    <string name="title_radio">Radio</string>
+    <string name="title_mention">Mention</string>
+    <string name="splash_welcome_screen">Splash Welcome Screen</string>
+    <string name="arabic_font">kfc_naskh-webfont.otf</string>
+    <string name="arabic_font2">me_quran-webfont.otf</string>
+    <string name="title_activity_home">Islami</string>
+
+    <string name="tsbeh_sum">مجموع التسبيحات</string>
+    <string name="tsbeha">التسبيحة</string>
+    <string name="cannot_connect_to_server">Cannot connect to server</string>
+    <string name="error">error</string>
+    <string name="loading">loading</string>
+    <string name="please_wait">please wait</string>
+    <string name="radio">radio</string>
+    <string name="cannot_play_channel">cannot play channel</string>
+    <array name="tsbeh_array" >
+        <item>الحمد لله</item>
+        <item>سبحان الله</item>
+        <item>الله اكبر</item>
+    </array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_apps">Content Apps</string>
+    <string name="sebha_img">sebha Img</string>
+    <string name="refresh_icon">refresh icon</string>
+    <string name="ok">OK</string>
+
+
+</resources>
