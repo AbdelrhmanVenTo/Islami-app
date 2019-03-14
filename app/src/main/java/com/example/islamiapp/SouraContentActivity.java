@@ -32,7 +32,7 @@ public class SouraContentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soura_content);
         int suraIndex=Integer.parseInt(suraFileName)-1;
-        getSupportActionBar().setTitle(QuranFragment.listOfSewarNames[suraIndex]);
+        getSupportActionBar().setTitle(QuranFragment.listOfSewarNames[suraIndex]+R.string.tool_name);
         quranContentrecyclerView = findViewById(R.id.ayat_content_recyclerView);
         adapter = new QuranContentAdapter(txtReader());
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);

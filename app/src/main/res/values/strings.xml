@@ -8,7 +8,7 @@
     <string name="arabic_font">kfc_naskh-webfont.otf</string>
     <string name="arabic_font2">me_quran-webfont.otf</string>
     <string name="title_activity_home">Islami</string>
-
+    <string name="tool_name">سورة</string>
     <string name="tsbeh_sum">مجموع التسبيحات</string>
     <string name="tsbeha">التسبيحة</string>
     <string name="cannot_connect_to_server">Cannot connect to server</string>
