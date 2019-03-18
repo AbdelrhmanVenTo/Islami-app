@@ -94,7 +94,7 @@
         android:id="@+id/tsebh_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:paddingStart="24dp"
         android:entries="@array/tsbeh_array"
         android:paddingEnd="24dp"
