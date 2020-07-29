@@ -73,6 +73,7 @@ public class MentionFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.refresh_ic:
                 count = 0;
+                sumCounter = 0;
                 tasbehCount.setText(count + "");
                 sumCount.setText(sumCounter + "");
                 break;

@@ -10,9 +10,10 @@ import android.view.MenuItem;
 
 import com.example.islamiapp.Base.BaseActivity;
 import com.example.islamiapp.TabsFragment.MentionFragment;
-import com.example.islamiapp.TabsFragment.QuotesFragment;
+import com.example.islamiapp.TabsFragment.qabla.QablaFragment;
 import com.example.islamiapp.TabsFragment.QuranFragment;
-import com.example.islamiapp.TabsFragment.RadioFragment;
+import com.example.islamiapp.TabsFragment.radio.RadioFragment;
+import com.example.islamiapp.TabsFragment.switchFragment.SwitchFragment;
 
 
 public class HomeActivity extends BaseActivity {
@@ -35,11 +36,15 @@ public class HomeActivity extends BaseActivity {
                     switchFragment(fragment);
                     return true;
                 case R.id.navigation_Quotes:
-                    fragment = new QuotesFragment();
+                    fragment = new SwitchFragment();
                     switchFragment(fragment);
                     return true;
                 case R.id.navigation_mention:
                     fragment = new MentionFragment();
+                    switchFragment(fragment);
+                    return true;
+                    case R.id.navigation_qabla:
+                    fragment = new QablaFragment();
                     switchFragment(fragment);
                     return true;
                 case R.id.navigation_radio:

@@ -1,4 +1,4 @@
-package com.example.islamiapp.TabsFragment;
+package com.example.islamiapp.TabsFragment.switchFragment.ahadeth;
 
 
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.islamiapp.Adapter.QuotesListAdapter;
 import com.example.islamiapp.Base.BaseFragment;
 import com.example.islamiapp.R;
 
@@ -70,6 +69,7 @@ public class QuotesFragment extends BaseFragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
+
                     }
                 });
             }

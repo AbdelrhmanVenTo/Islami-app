@@ -1,4 +1,4 @@
-package com.example.islamiapp.TabsFragment;
+package com.example.islamiapp.TabsFragment.radio;
 
 
 import android.media.MediaPlayer;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.islamiapp.API.APIManager;
 import com.example.islamiapp.API.Model.RadiosItem;
 import com.example.islamiapp.API.Model.RadiosResponse;
-import com.example.islamiapp.Adapter.RadioChannelsAdapter;
 import com.example.islamiapp.Base.BaseFragment;
 import com.example.islamiapp.R;
 
@@ -90,6 +89,7 @@ public class RadioFragment extends BaseFragment {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mp.start();
+                    Toast.makeText(activity, "You click start", Toast.LENGTH_SHORT).show();
                 }
 
             });
@@ -97,7 +97,7 @@ public class RadioFragment extends BaseFragment {
         } catch (IOException e) {
             showMessage(R.string.error,R.string.cannot_play_channel);
         }
-        Toast.makeText(activity, "You click start", Toast.LENGTH_SHORT).show();
+
 
 
 

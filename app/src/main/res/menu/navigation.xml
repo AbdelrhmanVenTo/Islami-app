@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_quran"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_quran"
         android:title="@string/title_quran" />
 
     <item
@@ -15,6 +15,11 @@
         android:id="@+id/navigation_mention"
         android:icon="@drawable/ic_mention"
         android:title="@string/title_mention" />
+
+    <item
+        android:id="@+id/navigation_qabla"
+        android:icon="@drawable/ic_bosla"
+        android:title="@string/qabla" />
 
     <item
         android:id="@+id/navigation_radio"

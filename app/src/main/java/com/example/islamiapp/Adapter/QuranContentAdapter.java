@@ -27,7 +27,10 @@ public class QuranContentAdapter extends RecyclerView.Adapter<QuranContentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+
         viewHolder.quranContent.setText( listOfSouraLines.get(position));
+        viewHolder.ayaNumber.setText(position+1+"");
+
 
     }
 
@@ -37,11 +40,12 @@ public class QuranContentAdapter extends RecyclerView.Adapter<QuranContentAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView quranContent;
+        TextView quranContent , ayaNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             quranContent = itemView.findViewById(R.id.quran_content);
+            ayaNumber = itemView.findViewById(R.id.aya_number);
 
         }
     }

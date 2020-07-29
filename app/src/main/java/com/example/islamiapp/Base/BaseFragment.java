@@ -1,11 +1,14 @@
 package com.example.islamiapp.Base;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-public class BaseFragment extends Fragment {
+public  class BaseFragment extends Fragment {
 
     MaterialDialog dialog;
     protected BaseActivity activity;
@@ -52,5 +55,6 @@ public class BaseFragment extends Fragment {
     public void hideProgressBar(){
         activity.hideProgressBar();
     }
+
 
 }
