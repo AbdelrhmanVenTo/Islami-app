@@ -1,7 +1,10 @@
 package com.example.islamiapp.TabsFragment.qabla;
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
@@ -17,6 +20,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -89,14 +93,56 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
 
         sensor = (SensorManager)activity.getSystemService(SENSOR_SERVICE);
 
-
+        myLocationProvider=new MyLocationProvider(activity);
         if (isLocationPermessionGranted()){
-            myLocationProvider=new MyLocationProvider(activity);
-            currentLocation=myLocationProvider.getUserLocation(this);
-            latitude = currentLocation.getLatitude();
-            longitude = currentLocation.getLongitude();
-            qiblaAngle = getQiblaAngle(latitude, longitude, meccaLatitude, meccaLongitude);
-            Log.e(TAG, "onCreateView: "+longitude );
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+            alertDialogBuilder.setTitle("رسالة تأكيد");
+            alertDialogBuilder.setMessage("من فضلك قم بتشغيل ال GPS الخاص بالهاتف");
+            alertDialogBuilder.setCancelable(true);
+
+            alertDialogBuilder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int arg1) {
+                    startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    dialog.cancel();
+                    Log.e("log","you  are here");
+
+                }
+            });
+            alertDialogBuilder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+
+                }
+            });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+
+
+            if (myLocationProvider.isGpsEnabled()){
+                Log.e("stateDilog" , "enabeld");
+                alertDialog.cancel();
+            }else {
+                Log.e("stateDilog" , "desibled");
+                alertDialog.show();
+            }
+
+
+
+            //call function
+            try {
+                //Toast.makeText(this, "opened", Toast.LENGTH_SHORT).show();
+
+                currentLocation=myLocationProvider.getUserLocation(this);
+                latitude = currentLocation.getLatitude();
+                longitude = currentLocation.getLongitude();
+                qiblaAngle = getQiblaAngle(latitude, longitude, meccaLatitude, meccaLongitude);
+                Log.e(TAG, "onCreateView: "+longitude );
 
                 Geocoder geocoder;
                 List<Address> addresses = new ArrayList();
@@ -113,8 +159,18 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
 
                 String city = addresses.get(0).getLocality();
                 String country = addresses.get(0).getCountryName();
-            text_atas.setText(country+" - "+city);
+                if (country == null || city == null){
 
+                    text_atas.setText("غير متوفر");
+                }
+                else {
+                    text_atas.setText(country+" - "+city);
+                    //UserLocation.setText(session.getLocationCode());
+                }
+            }catch (Exception e) {
+                //Toast.makeText(this, "wrong", Toast.LENGTH_SHORT).show();
+                text_atas.setText("غير متوفر");
+            }
 
         }else {
             requestLocationPersmission();
@@ -123,6 +179,7 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
 
 
         Log.e(TAG, "onCreateView: " );
+
 
 
 
@@ -190,7 +247,89 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
         super.onResume();
         sensor.registerListener((SensorEventListener) this, sensor.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
+
         Log.e(TAG, "onResume: " );
+
+        try {
+            if(isLocationPermessionGranted()){
+                //call function
+                //Toast.makeText(this, "onRusuem", Toast.LENGTH_SHORT).show();
+                //  showUserLocation();
+                if (myLocationProvider.isGpsEnabled()){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
+                    alertDialogBuilder.setTitle("رسالة تأكيد");
+                    alertDialogBuilder.setMessage("من فضلك قم بتشغيل ال GPS الخاص بالهاتف");
+                    alertDialogBuilder.setCancelable(true);
+
+                    alertDialogBuilder.setPositiveButton("حسنا", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int arg1) {
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                            dialog.cancel();
+                            Log.e("log","you  are here");
+
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+
+
+                    if (myLocationProvider.isGpsEnabled()){
+                        Log.e("stateDilog" , "enabeld");
+                        alertDialog.cancel();
+                    }else {
+                        Log.e("stateDilog" , "desibled");
+                        alertDialog.show();
+                    }
+                    myLocationProvider=new MyLocationProvider(activity);
+                    currentLocation=myLocationProvider.getUserLocation(this);
+                    latitude = currentLocation.getLatitude();
+                    longitude = currentLocation.getLongitude();
+                    qiblaAngle = getQiblaAngle(latitude, longitude, meccaLatitude, meccaLongitude);
+                    Log.e(TAG, "onCreateView: "+longitude );
+
+                    Geocoder geocoder;
+                    List<Address> addresses = new ArrayList();
+
+
+                    try {
+                        Locale mLocale = new Locale("ar");
+                        Locale.setDefault(mLocale);
+                        geocoder = new Geocoder(activity, Locale.getDefault());
+                        addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    String city = addresses.get(0).getLocality();
+                    String country = addresses.get(0).getCountryName();
+                    text_atas.setText(country+" - "+city);
+                }else {
+                    text_atas.setText("غير متوفر");
+
+                }
+
+
+
+            }else {
+                requestLocationPersmission();
+            }
+
+
+        }catch (Exception e){
+            Log.e("ResumeLocPermissions","isLocationPermissionsNotGranted");
+        }
+
     }
 
     @Override
@@ -237,11 +376,17 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
 
                     String city = addresses.get(0).getLocality();
                     String country = addresses.get(0).getCountryName();
-                    text_atas.setText(country+" - "+city);
+                    if (country == null || city == null){
 
+                        text_atas.setText("غير متوفر");
+                    }
+                    else {
+                        text_atas.setText(country+" - "+city);
+                        //UserLocation.setText(session.getLocationCode());
+                    }
                 } else {
 
-                    Toast.makeText(activity, getResources().getString(R.string.toast_permission_required), Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity,"لا استطيع العثور على موقعك", Toast.LENGTH_LONG).show();
 
                 }
                 return;
@@ -309,7 +454,14 @@ public class QablaFragment extends BaseFragment implements SensorEventListener, 
 
         String city = addresses.get(0).getLocality();
         String country = addresses.get(0).getCountryName();
-        text_atas.setText(country+" - "+city);
+        if (country == null || city == null){
+
+            text_atas.setText("غير متوفر");
+        }
+        else {
+            text_atas.setText(country+" - "+city);
+            //UserLocation.setText(session.getLocationCode());
+        }
     }
 
     @Override
