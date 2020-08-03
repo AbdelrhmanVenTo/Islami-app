@@ -9,7 +9,7 @@
         android:id="@+id/quran_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/me_quran_webfont"
+        android:fontFamily="@font/kfc_naskh_webfont"
         android:gravity="center"
         android:text="ggdfgdgd"
         android:textColor="@color/colorWhite"

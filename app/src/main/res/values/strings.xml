@@ -6,8 +6,7 @@
     <string name="title_radio">راديو</string>
     <string name="title_mention">السبحة</string>
     <string name="splash_welcome_screen">Splash Welcome Screen</string>
-    <string name="arabic_font">kfc_naskh-webfont.otf</string>
-    <string name="arabic_font2">me_quran-webfont.otf</string>
+
     <string name="title_activity_home">اسلامى</string>
     <string name="tool_name">سورة</string>
     <string name="tsbeh_sum">مجموع التسبيحات</string>

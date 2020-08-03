@@ -34,22 +34,27 @@ public class HomeActivity extends BaseActivity {
                 case R.id.navigation_quran:
                     fragment = new QuranFragment();
                     switchFragment(fragment);
+                    getSupportActionBar().setTitle(R.string.title_quran);
                     return true;
                 case R.id.navigation_Quotes:
                     fragment = new SwitchFragment();
                     switchFragment(fragment);
+                    getSupportActionBar().setTitle(R.string.title_quotes);
                     return true;
                 case R.id.navigation_mention:
                     fragment = new MentionFragment();
                     switchFragment(fragment);
+                    getSupportActionBar().setTitle(R.string.title_mention);
                     return true;
                     case R.id.navigation_qabla:
                     fragment = new QablaFragment();
                     switchFragment(fragment);
+                        getSupportActionBar().setTitle(R.string.qabla);
                     return true;
                 case R.id.navigation_radio:
                     fragment = new RadioFragment();
                     switchFragment(fragment);
+                    getSupportActionBar().setTitle(R.string.title_radio);
                     return true;
             }
             return false;
@@ -75,6 +80,9 @@ public class HomeActivity extends BaseActivity {
                 .beginTransaction()
                 .add(R.id.fragmentContainer, fragment)
                 .commit();
+
+
     }
+
 
 }
